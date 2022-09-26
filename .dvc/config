@@ -1,4 +1,0 @@
-[core]
-    remote = mybigblackremote
-['remote "mybigblackremote"']
-    url = s3://mybigblackbucket
