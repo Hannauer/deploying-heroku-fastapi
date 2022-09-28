@@ -1,5 +1,5 @@
-from tkinter import N
 from sklearn.metrics import fbeta_score, precision_score, recall_score
+from .data import process_data
 from sklearn.ensemble import RandomForestClassifier
 
 
@@ -20,7 +20,7 @@ def train_model(X_train, y_train):
         Trained machine learning model.
     """
 
-    model = RandomForestClassifier(n_estimators=50)
+    model = RandomForestClassifier(n_estimators=50, random_state=42)
     model.fit(X_train, y_train)
     
     return model
@@ -63,3 +63,52 @@ def inference(model, X):
     """
     y_preds = model.predict(X)
     return y_preds
+
+def compute_score_per_slice(model, df_test, encoder,
+                            lb):
+    """
+    Compute score per category class slice
+    Parameters
+    ----------
+    model : sklearn.RandomForestClassifier
+            Trained RandomForestClassifier
+    df_test : pd.DataFrame
+              Datrame with the test data
+    encoder : sklearn.OneHotEncoder
+              Trained encoder
+    lb : sklearn.LabelEncoder
+         Sklearn trained label encoder
+    Returns
+    -------
+    """
+    cat_features = [
+        "workclass",
+        "education",
+        "marital-status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native-country",
+    ]
+
+
+    with open('../../model/slice_output.txt', 'w') as file:
+        for category in cat_features:
+            for cls in df_test[category].unique():
+                temp_df = df_test[df_test[category] == cls]
+
+                x_test, y_test, _, _ = process_data(
+                    temp_df,
+                    categorical_features=cat_features,
+                    training=False,
+                    label="salary", encoder=encoder, lb=lb)
+
+                y_pred = model.predict(x_test)
+
+                prc, rcl, fb = compute_model_metrics(y_test, y_pred)
+
+                metric_info = "[%s]-[%s] Precision: %s " \
+                              "Recall: %s FBeta: %s" % (category, cls,
+                                                        prc, rcl, fb)
+                file.write(metric_info + '\n')

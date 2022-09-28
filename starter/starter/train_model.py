@@ -48,7 +48,7 @@ def split_data(data):
     return df_train, df_test
 
 
-def train_save_model(df_train, df_test):
+def train_save_model(df_train):
     cat_features = [
         "workclass",
         "education",
