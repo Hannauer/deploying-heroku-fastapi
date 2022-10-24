@@ -1,9 +1,9 @@
 from joblib import load
 from .ml.model import compute_score_per_slice
 
-def model_validate(df_test, cat_features):
+def model_validate(df_test):
     '''
-    Validate 
+    Validate the model using slices of the original dataframe
     
     '''
 
