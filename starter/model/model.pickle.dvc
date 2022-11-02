@@ -1,0 +1,5 @@
+outs:
+- md5: 0c3cb55fade25c3ba3e87e6635a4ff86
+  size: 32699571
+  isexec: true
+  path: model.pickle
