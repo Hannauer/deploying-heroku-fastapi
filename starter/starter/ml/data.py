@@ -1,6 +1,20 @@
 import numpy as np
+import pandas as pd
 from sklearn.preprocessing import LabelBinarizer, OneHotEncoder
 
+
+def clean_data():
+
+    dataframe = pd.read_csv('../data/census.csv', skipinitialspace=True)
+
+    dataframe.replace({'?':None}, inplace = True)
+    dataframe.dropna(inplace = True)
+    dataframe.drop(columns = ['capital-loss', 'capital-gain', 'education-num'], inplace = True)
+    dataframe.rename(columns = {'marital-status':'marital_status', 
+    'native-country':'native_country', 'hours-per-week':'hours_per_week'}, inplace = True)
+
+    dataframe.to_csv('../data/census_clean.csv', skipinitialspace=True)
+    return dataframe 
 
 def process_data(
     X, categorical_features=[], label=None, training=True, encoder=None, lb=None

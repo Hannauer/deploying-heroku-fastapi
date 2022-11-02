@@ -2,6 +2,7 @@ from joblib import load
 from .ml.data import process_data
 from .ml.model import inference
 
+
 def start_inference(data):
     '''
     Load model and other artifacts and run the infarece on new data
