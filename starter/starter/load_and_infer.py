@@ -20,17 +20,17 @@ def start_inference(data):
     cat_features = [
         "workclass",
         "education",
-        "marital-status",
+        "marital_status",
         "occupation",
         "relationship",
         "race",
         "sex",
-        "native-country",
+        "native_country",
     ]
 
-    model = load('../model/model.pickle')
-    encoder = load('../model/one_hot_encoder.pickle')
-    lb = load('../model/lb.pickle')
+    model = load('model/model.pickle')
+    encoder = load('model/one_hot_encoding.pickle')
+    lb = load('model/lb.pickle')
 
     X, _, _, _ = process_data(X = data,
                             categorical_features=cat_features,

@@ -48,16 +48,16 @@ def split_data(data):
     return df_train, df_test
 
 
-def train_save_model(df_train):
+def train_save_model(df_train, path):
     cat_features = [
         "workclass",
         "education",
-        "marital-status",
+        "marital_status",
         "occupation",
         "relationship",
         "race",
         "sex",
-        "native-country",
+        "native_country",
     ]
 
     # Proces the test data with the process_data function.
@@ -67,6 +67,6 @@ def train_save_model(df_train):
     # Train and save a model.
     model = train_model(X_train, y_train )
 
-    dump(model, '../model/model.pickle')
-    dump(encoder, '../model/one_hot_encoding.pickle')
-    dump(lb, '../model/lb.pickle')
+    dump(model, path+'/model/model.pickle')
+    dump(encoder, path+'/model/one_hot_encoding.pickle')
+    dump(lb, path+'/model/lb.pickle')
