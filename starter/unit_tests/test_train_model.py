@@ -1,6 +1,4 @@
 import os
-import pytest
-
 from starter.train_model import load_data, split_data, train_save_model
 
 
