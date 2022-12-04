@@ -39,8 +39,8 @@ def test_train_save_model(df_train):
     Testing the train and save model
     '''
 
-    train_save_model(df_train)
+    #train_save_model(df_train)
 
-    assert os.path.isfile("../model/model.pickle")
-    assert os.path.isfile("../model/one_hot_encoder.pickle")
-    assert os.path.isfile("../model/lb.pickle")
+    assert os.path.isfile("./model/model.pickle")
+    assert os.path.isfile("./model/one_hot_encoding.pickle")
+    assert os.path.isfile("./model/lb.pickle")
