@@ -5,7 +5,7 @@ from starter.train_model import load_data, split_data, train_save_model
 
 @pytest.fixture(scope="session")
 def data():
-    df =  load_data('/data/census.csv')
+    df =  load_data('./data/census.csv')
     return df
 
 @pytest.fixture(scope="session")
@@ -19,7 +19,7 @@ def test_load_data():
     '''
     Testing the loading data funciont
     '''
-    data =  load_data('/data/census.csv')
+    data =  load_data('./data/census.csv')
 
     assert data.shape[0] > 0
     assert data.shape[1] > 0
