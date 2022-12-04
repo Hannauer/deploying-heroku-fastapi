@@ -16,8 +16,7 @@ data =  {"age": 31,
  "capital_gain": 14084,
  "native_country": "United-States"}
 
-r = requests.post('https://censu-app.herokuapp.com/', json=data)
-print(r)
+r = requests.post('https://censu-app.herokuapp.com/infer/', json=data)
 
 assert r.status_code == 200
 
