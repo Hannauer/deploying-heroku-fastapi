@@ -13,7 +13,7 @@ from starter.load_and_infer import start_inference
 
 
 class InputData(BaseModel):
-    age: int = 21
+    age: int =  Field(..., example=21)
     workclass: str = Field(..., example="State-gov")
     fnlgt: int = Field(..., example=77516)
     education: str = Field(..., example="Bachelors")

@@ -64,6 +64,33 @@ def inference(model, X):
     y_preds = model.predict(X)
     return y_preds
 
+def compute_metrics(model, df_test, encoder,
+                            lb, path):
+    
+    cat_features = [
+        "workclass",
+        "education",
+        "marital_status",
+        "occupation",
+        "relationship",
+        "race",
+        "sex",
+        "native_country",
+    ]
+
+    x_test, y_test, _, _ = process_data(
+                    df_test,
+                    categorical_features=cat_features,
+                    training=False,
+                    label="salary", encoder=encoder, lb=lb)
+
+    y_pred = model.predict(x_test)
+
+    prc, rcl, fb = compute_model_metrics(y_test, y_pred)
+
+    return prc, rcl, fb
+
+    
 def compute_score_per_slice(model, df_test, encoder,
                             lb, path):
     """
